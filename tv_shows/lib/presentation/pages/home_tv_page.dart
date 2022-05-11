@@ -5,6 +5,8 @@ import 'package:core/styles/text_styles.dart';
 import 'package:core/utils/constants.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/presentation/pages/home_movie_page.dart';
+import 'package:core/presentation/pages/watchlist_page.dart';
 import 'package:tv_shows/presentation/bloc/tv_now_playing_bloc.dart';
 import 'package:tv_shows/presentation/bloc/tv_popular_bloc.dart';
 import 'package:tv_shows/presentation/bloc/tv_top_rated_bloc.dart';
@@ -37,16 +39,48 @@ class _HomeTvPageState extends State<HomeTvPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.chevron_left,
-            size: 35,
-          ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/circle-g.png'),
+              ),
+              accountName: Text('Ditonton'),
+              accountEmail: Text('ditonton@dicoding.com'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.movie_creation_outlined),
+              title: const Text('Movies'),
+              onTap: () {
+                Navigator.pushNamed(context, HomeMoviePage.routeName);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.live_tv),
+              title: const Text('TV Series'),
+              onTap: () {
+                Navigator.pushNamed(context, HomeTvPage.routeName);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.save_alt),
+              title: const Text('Watchlist'),
+              onTap: () {
+                Navigator.pushNamed(context, WatchlistPage.routeName);
+              },
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.pushNamed(context, aboutRoute);
+              },
+              leading: const Icon(Icons.info_outline),
+              title: const Text('About'),
+            ),
+          ],
         ),
+      ),
+      appBar: AppBar(
         centerTitle: true,
         title: const Text('TV Series'),
         actions: [

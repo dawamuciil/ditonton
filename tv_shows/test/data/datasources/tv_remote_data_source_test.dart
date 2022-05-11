@@ -111,7 +111,7 @@ void main() {
   });
 
   group('get tv detail', () {
-    final tId = 1;
+    const tId = 1;
     final tTvDetail = TvDetailResponse.fromJson(
         json.decode(readJson('dummy_data/tv_detail.json')));
 
